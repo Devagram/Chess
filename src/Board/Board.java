@@ -73,7 +73,7 @@ public class Board {
 
     }
 
-    public int findPiece(int x, int y){
+    public int FindPiece(int x, int y){
         for(int i = 0; i < whiteList.size(); i++) {
             if(whiteList.get(i).getX() == x){
                 if(whiteList.get(i).getY() == y){
@@ -84,10 +84,8 @@ public class Board {
         return -1;
     }
 
-    public void modifyPiece(int index, int x, int y){
+    public void MovePiece(int x, int y, int index){
+        whiteList.get(index).setY(y);
         whiteList.get(index).setX(x);
-        whiteList.get(index).setY(x);
     }
-
-
 }

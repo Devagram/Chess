@@ -103,8 +103,10 @@ public class ChessGame {
                     }
 
                     if (xOne != -1 && yOne != -1 && board.boardGrid[xOne][yOne] > 0) {
-                        piece = board.findPiece(xOne, yOne);
-                        if (board.boardGrid[xOne][yOne] == 1) {
+                        piece = board.FindPiece(xOne, yOne);
+                        if (board.boardGrid[xOne][yOne] == 1 && board.boardGrid[xOne][yOne + 1] == 0
+                                || board.boardGrid[xOne][yOne] == 1 && board.boardGrid[xOne + 1][yOne + 1] > 0
+                                || board.boardGrid[xOne][yOne] == 1 && board.boardGrid[xOne - 1][yOne + 1] > 0) {
                             System.out.println("Select X to move to: \"A B C D E F G H\"");
                             xString = sc.nextLine();
                             switch (xString) {
@@ -181,18 +183,33 @@ public class ChessGame {
                                 if(yTwo - yOne == 1) {
                                     board.boardGrid[xOne][yOne] = 0;
                                     board.boardGrid[xTwo][yTwo] = 1;
+                                    board.MovePiece(xTwo, yTwo, piece);
                                 }
                                 else if(yOne == 1){
                                     board.boardGrid[xOne][yOne] = 0;
                                     board.boardGrid[xTwo][yTwo] = 1;
+                                    board.MovePiece(xTwo, yTwo, piece);
                                 }
                                 else{
                                     System.out.println("Illegal move");
                                 }
                             }
+                            else if(yTwo - yOne == 1 && xOne - xTwo == 1 && board.boardGrid[xTwo][yTwo] > 0){
+                                board.boardGrid[xOne][yOne] = 0;
+                                board.boardGrid[xTwo][yTwo] = 1;
+                                board.MovePiece(xTwo, yTwo, piece);
+                            }
+                            else if(yTwo - yOne == 1 && xOne - xTwo == -1 && board.boardGrid[xTwo][yTwo] > 0){
+                                board.boardGrid[xOne][yOne] = 0;
+                                board.boardGrid[xTwo][yTwo] = 1;
+                                board.MovePiece(xTwo, yTwo, piece);
+                            }
                             else{
                                 System.out.println("Illegal move");
                             }
+                        }
+                        else if (board.boardGrid[xOne][yOne] == 2 && board.boardGrid[xOne + 1][yOne + 1] == 0) {
+
                         }
                     }
                 }
