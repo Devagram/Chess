@@ -63,50 +63,48 @@ public class ChessGame {
                         state = false;
                         break;
                     default:
-                        System.out.print("Incompatible coordinate");
+                        System.out.println("Incompatible coordinate");
                         xOne = -1;
                         break;
-
                 }
+                if(xOne != -1) {
+                    System.out.println("Select Y: \"1 2 3 4 5 6 7 8\"");
+                    yOne = sc.nextInt();
+                    sc.nextLine();
+                    switch (yOne) {
+                        case 1:
+                            yOne = 0;
+                            break;
+                        case 2:
+                            yOne = 1;
+                            break;
+                        case 3:
+                            yOne = 2;
+                            break;
+                        case 4:
+                            yOne = 3;
+                            break;
+                        case 5:
+                            yOne = 4;
+                            break;
+                        case 6:
+                            yOne = 5;
+                            break;
+                        case 7:
+                            yOne = 6;
+                            break;
+                        case 8:
+                            yOne = 7;
+                            break;
+                        default:
+                            System.out.println("Incompatible coordinate");
+                            yOne = -1;
+                            break;
+                    }
 
-                System.out.println("Select Y: \"1 2 3 4 5 6 7 8\"");
-                yOne = sc.nextInt();
-                sc.nextLine();
-                switch (yOne) {
-                    case 1:
-                        yOne = 0;
-                        break;
-                    case 2:
-                        yOne = 1;
-                        break;
-                    case 3:
-                        yOne = 2;
-                        break;
-                    case 4:
-                        yOne = 3;
-                        break;
-                    case 5:
-                        yOne = 4;
-                        break;
-                    case 6:
-                        yOne = 5;
-                        break;
-                    case 7:
-                        yOne = 6;
-                        break;
-                    case 8:
-                        yOne = 7;
-                        break;
-                    default:
-                        System.out.print("Incompatible coordinate");
-                        yOne = -1;
-                        break;
-                }
-
-                if(xOne != -1 && yOne != -1 && board.boardGrid[xOne][yOne] > 0) {
-                    System.out.print(board.boardGrid[xOne][yOne]);
-                    piece = board.findPiece(xOne, yOne);
-                    if(board.boardGrid[xOne][yOne] == 1){
+                    if (xOne != -1 && yOne != -1 && board.boardGrid[xOne][yOne] > 0) {
+                        piece = board.findPiece(xOne, yOne);
+                        if (board.boardGrid[xOne][yOne] == 1) {
                             System.out.println("Select X to move to: \"A B C D E F G H\"");
                             xString = sc.nextLine();
                             switch (xString) {
@@ -138,55 +136,66 @@ public class ChessGame {
                                     state = false;
                                     break;
                                 default:
-                                    System.out.print("Incompatible coordinate");
+                                    System.out.println("Incompatible coordinate");
                                     xTwo = -1;
                                     break;
                             }
-                            System.out.println("Select Y to move to: \"1 2 3 4 5 6 7 8\"");
-                            yTwo = sc.nextInt();
-                            sc.nextLine();
-                            switch (yTwo) {
-                                case 1:
-                                    yTwo = 0;
-                                    break;
-                                case 2:
-                                    yTwo = 1;
-                                    break;
-                                case 3:
-                                    yTwo = 2;
-                                    break;
-                                case 4:
-                                    yTwo = 3;
-                                    break;
-                                case 5:
-                                    yTwo = 4;
-                                    break;
-                                case 6:
-                                    yTwo = 5;
-                                    break;
-                                case 7:
-                                    yTwo = 6;
-                                    break;
-                                case 8:
-                                    yTwo = 7;
-                                    break;
-                                default:
-                                    System.out.print("Incompatible coordinate");
-                                    yTwo = -1;
-                                    break;
+                            if (xTwo != -1) {
+                                System.out.println("Select Y to move to: \"1 2 3 4 5 6 7 8\"");
+                                yTwo = sc.nextInt();
+                                sc.nextLine();
+                                switch (yTwo) {
+                                    case 1:
+                                        yTwo = 0;
+                                        break;
+                                    case 2:
+                                        yTwo = 1;
+                                        break;
+                                    case 3:
+                                        yTwo = 2;
+                                        break;
+                                    case 4:
+                                        yTwo = 3;
+                                        break;
+                                    case 5:
+                                        yTwo = 4;
+                                        break;
+                                    case 6:
+                                        yTwo = 5;
+                                        break;
+                                    case 7:
+                                        yTwo = 6;
+                                        break;
+                                    case 8:
+                                        yTwo = 7;
+                                        break;
+                                    default:
+                                        System.out.println("Incompatible coordinate");
+                                        yTwo = -1;
+                                        break;
+                                }
                             }
+
+                            if (xOne == xTwo && yTwo - yOne == 1 || xOne == xTwo && yTwo - yOne == 2) {
+                                //board.whiteList.get(i);
+                                if(yTwo - yOne == 1) {
+                                    board.boardGrid[xOne][yOne] = 0;
+                                    board.boardGrid[xTwo][yTwo] = 1;
+                                }
+                                else if(yOne == 1){
+                                    board.boardGrid[xOne][yOne] = 0;
+                                    board.boardGrid[xTwo][yTwo] = 1;
+                                }
+                                else{
+                                    System.out.println("Illegal move");
+                                }
+                            }
+                            else{
+                                System.out.println("Illegal move");
+                            }
+                        }
                     }
-
-                    if(xOne == xTwo && yTwo - yOne == 1 || yOne - yTwo == 2 ){
-                        //board.whiteList.get(i);
-
-                        board.boardGrid[xOne][yOne] = 0;
-
-                        board.boardGrid[xTwo][yTwo] = 1;
-                    }
-
                 }
-
             }while(state == true);
         }
 }
