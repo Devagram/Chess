@@ -1,9 +1,12 @@
 import Board.*;
 import java.util.*;
+import GUI.*;
 
 public class ChessGame {
 
         public static void main(String [ ] args) {
+            GUI app = new GUI();
+            app.runSoftware();
             boolean state = true;
             Board board = new Board();
             Scanner sc = new Scanner(System.in);
